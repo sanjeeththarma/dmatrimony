@@ -1,0 +1,246 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+video#bgvid { 
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height:100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+   
+    background: url(bg.jpg) no-repeat;
+    background-size: cover; 
+}
+
+.bg1 {
+	  width: 100%;
+	  height: 100%;
+	  padding: 0px 0px 0px 0px;
+	  margin: 0px 0px 0px 0px;
+	  background-image: url(bg1.jpg);  
+	  background-position: center center; 
+	  background-repeat: no-repeat;  
+	  background-attachment: fixed; 
+	  background-size: cover;
+	  position:absolute;
+	  left:0px;
+	  right:0px;
+	  top:0px;
+	  bottom:0px;
+}
+.banner {
+	display:inline-block; 
+	position:absolute; 
+	right:20px; 
+	top:100px; 
+	background-color: black; 
+	opacity: 0.9; 
+	filter: alpha(opacity=60); 
+	padding: 25px 25px 25px 25px;
+	color: white;
+	font-size: 28px;
+}
+#logo img {
+	max-width: 35%;
+	height: auto !important;
+}
+
+
+
+ 
+.trans {
+	padding: 25px  25px  25px  25px;
+	margin: 25px  25px  25px  25px;
+	opacity: 0.9;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+    position:relative;
+    bottom:5px;
+    width:55px;
+    height: 15px;
+    background-color:black;
+    border-radius:5px;
+    color:white;
+    display:inline-block;
+    cursor:pointer;
+ }
+ .trans:hover {
+	  background-color:#333333;
+ }
+ .transbutton {
+	padding: 10px  25px  25px  25px;
+	margin: 25px  25px  25px  25px;
+	opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+    width:95px;
+    height: 40px;
+    background-color:#cccccc;
+    border-radius:5px;
+    color:black;
+    display:inline-block;
+    cursor:pointer;
+    border: none;
+ }
+ .transbutton:hover {
+	  background-color:#333333;
+ }
+ 
+ .trans2 {
+	padding: 25px  25px  25px  25px;
+	opacity: 0.9;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+    position:relative;
+    bottom:80px;
+    width:320px;
+    height: 50px;
+    background-color:black;
+    border-radius:5px;
+    color:black;
+    display:inline-block;
+    border-radius:5px;
+ }
+ 
+
+ .transbutton2 {
+	padding: 10px  25px  25px  25px;
+	margin: 25px  25px  25px  25px;
+	opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+    width:95px;
+    height: 40px;
+    background-color:black;
+    border-radius:5px;
+    color:white;
+    display:inline-block;
+    cursor:pointer;
+    border: none;
+ }
+ .transbutton2:hover {
+	  background-color:#333333;
+ }
+ 
+ 
+.trans3 {
+	padding: 25px  25px  25px  25px;
+	opacity: 0.9;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+    position:absolute;
+    top:20px;
+    width:520px;
+    height: 920px;
+    background-color:black;
+    border-radius:5px;
+    color:white;
+    display:inline-block;
+    border-radius:25px;
+    right:10%;
+ }
+ 
+ 
+
+ .transbutton3 {
+	padding: 10px  25px  25px  25px;
+	margin: 25px  25px  25px  25px;
+	opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+    width:95px;
+    height: 40px;
+    background-color:#ffffff;
+    border-radius:5px;
+    color:black;
+    display:inline-block;
+    cursor:pointer;
+    border: none;
+ }
+ .transbutton3:hover {
+	  background-color:#cccccc;
+ }
+
+.transbutton4 {
+	padding: 10px  25px  25px  25px;
+	margin: 25px  25px  25px  25px;
+	opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+    width:95px;
+    height: 40px;
+    background-color:#cccccc;
+    border-radius:5px;
+    color:black;
+    display:inline-block;
+    cursor:pointer;
+    border: none;
+ }
+ .transbutton4:hover {
+	  background-color:#ffffff;
+ }
+
+ .transbutton5 {
+	padding: 25px  25px  25px  25px;
+	opacity: 0.9;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+    position:absolute;
+    top:20px;
+    width:95px;
+    height: 40px;
+    background-color:black;
+    border-radius:5px;
+    color:white;
+    display:inline-block;
+    border-radius:25px;
+    right:10%;
+ }
+ .transbutton5:hover {
+	  background-color:#cccccc;
+ }
+ 
+
+
+@media all and (max-width: 600px) {
+	.banner{
+		position:relative;
+		top:10px;
+		left:-25px;
+		font-size: 22px;
+		width: 100%;
+		display: flex;
+  		justify-content: center;
+	}
+	.trans3 {
+		position:relative;
+		left:-50px;
+	}
+	.trans {
+		left:-30px;
+ 	}
+ 	.trans2 {
+		padding: 25px  25px  25px  25px;
+		opacity: 0.9;
+	    filter: alpha(opacity=80); /* For IE8 and earlier */
+	    position:relative;
+	    bottom:10px;
+	    width:320px;
+	    height: 50px;
+	    background-color:black;
+	    border-radius:5px;
+	    color:black;
+	    display:inline-block;
+	    border-radius:5px;
+ 	}
+ 	.transbutton5 {
+ 		position:relative;
+ 		display:inline-block; 
+ 		margin:55px 55px 55px 55px;
+ 	}
+}

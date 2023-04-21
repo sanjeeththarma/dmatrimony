@@ -1,0 +1,955 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>D-Matrimony</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<style>
+table {
+ 
+  opacity:0.9;
+  border-collapse: collapse;
+  margin: 25px 25px 25px 25px;
+  padding: 15px 15px 15px 15px;
+  width: auto;
+  
+  table-layout: fixed;
+  
+  
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  padding: 15px 15px 15px 15px;
+}
+
+table th,
+table td {
+  
+  padding: 15px 15px 15px 15px;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.divbg1{
+	max-width:600px; 
+	width:100%; 
+	height:auto; 
+	opacity:0.9; 
+	padding: 25px 25px 25px 25px; 
+	background-color:black; 
+	border-radius:25px; 
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);	
+}
+
+.errmsg1 {
+	background-color:#222; 
+	color: white; 
+	border-radius: 5px; 
+	box-shadow: 0px 4px 8px 0 rgba(100, 100, 100, 0.7), 0px 6px 20px 0 rgba(100, 100, 100, 0.7); 
+	max-width:350px; 
+	width:90%;
+	height:auto; 
+	display:none; 
+	z-index: 99999; 
+	padding: 25px 25px 25px 25px;
+}
+
+@media screen and (max-width: 600px) {
+  .errmsg1 {
+	width:100px;
+	font-size:12px;
+  }
+  .divbg1{
+	width:300px;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    
+    display: block;
+    font-size: .8em;
+    text-align: left;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+/* general styling */
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.25;
+}
+
+</style>
+</head>
+
+<body>
+
+<video playsinline autoplay muted loop poster="bg.jpg" id="bgvid">
+    <source src="bg.mp4" type="video/mp4">
+</video> 
+<div>
+	<div id="logo"><a href="index.html"><img src="logo.png"></a></div>
+	<center>
+		
+			<form action="register.php" method="post" enctype="multipart/form-data" onsubmit="return validatefrm()">
+				<div class="divbg1">
+				<table border="0" id="table1" cellspacing="25">
+				<tr>
+					<td>
+					<i><font color="#ffffff">Email:&nbsp; </font> 
+					</i> </td>
+					<td>
+						<input type="text" name="email" id="email" size="26" style="float: left; border-radius:5px; height:30px; border: 5px solid black;" onkeydown="setborder(this)" onclick="setborder(this)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<i><font color="#ffffff">Password:&nbsp; </font>
+					</i></td>
+					<td><input type="password" name="password" id="password" size="26" style="float: left; border-radius:5px; height:30px; border: 5px solid black;" onkeydown="setborder(this)" onclick="setborder(this)"></td>
+				</tr>
+
+				<tr>
+					<td>
+					<i><font color="#ffffff">Password Again:</font></i></td>
+					<td>
+						<input type="password" name="password2" id="password2" size="26" style="float: left; border-radius:5px; height:30px; border: 5px solid black;" onkeydown="setborder(this)" onclick="setborder(this)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<i><font color="#ffffff">First Name:</font></i></td>
+					<td>
+					<input type="text" name="fname" id="fname" size="26" style="float: left; border-radius:5px; height:30px; border: 5px solid black;" onkeydown="setborder(this)" onclick="setborder(this)"></td>
+				</tr>
+				<tr>
+					<td>
+					<i><font color="#ffffff">Last Name:</font></i></td>
+					<td>
+					<input type="text" name="lname" id="lname" size="26" style="float: left; border-radius:5px; height:30px; border: 5px solid black;" onkeydown="setborder(this)" onclick="setborder(this)"></td>
+				</tr>
+				<tr>
+					<td>
+					<i><font color="#ffffff">Gender:</font></i></td>
+					<td>
+						
+						<i>
+						<font color="#ffffff">
+						<input type="checkbox" name="gender[]" id="male" value="male" style="position:relative; top:5px; width:20px; height:20px; outline: 2px solid black;" onclick="javascript:chk('male'); setborder2();"> Male 
+						<font size="4">&nbsp;&nbsp;|&nbsp;&nbsp;</font>
+						<input type="checkbox" name="gender[]" id="female" value="female" style="position:relative; top:5px; width:20px; height:20px; outline: 2px solid black;" onclick="javascript:chk('female'); setborder2();"> Female
+						</font>
+						</i>
+						</p>
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						
+						<i>
+						<font color="#ffffff">Birthdate: </font>
+						</i>
+						</td>
+						<td>
+						<select size="1" name="optdays" id="optdays" style="border-radius:5px; height:30px; border: 5px solid black;" onchange="setborder(this)" onclick="setborder(this)" onkeydown="setborder(this)"></select>
+						<select size="1" name="optmonths" id="optmonths" style="border-radius:5px; height:30px; border: 5px solid black;" onchange="setborder(this)" onclick="setborder(this)" onkeydown="setborder(this)"></select>
+						<select size="1" name="optyears" id="optyears" style="border-radius:5px; height:30px; border: 5px solid black;" onchange="setborder(this)" onclick="setborder(this)" onkeydown="setborder(this)"></select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						
+						<i>
+						<font color="#ffffff">Height: </font>
+						</i>
+						</td>
+						<td>
+							<select size="1" name="optheights" id="optheights" style="border-radius:5px; height:30px; border: 5px solid black;" onchange="setborder(this)" onclick="setborder(this)" onkeydown="setborder(this)">
+								<option value="0">Select Height</option>
+								<option value="3.11">Shorter Than 4 ft</option>
+								<option value="4.0">4 ft</option>
+								<option value="4.1">4 ft 1 inch</option>
+								<option value="4.2">4 ft 2 inch</option>
+								<option value="4.3">4 ft 3 inch</option>
+								<option value="4.4">4 ft 4 inch</option>
+								<option value="4.5">4 ft 5 inch</option>
+								<option value="4.6">4 ft 6 inch</option>
+								<option value="4.7">4 ft 7 inch</option>
+								<option value="4.8">4 ft 8 inch</option>
+								<option value="4.9">4 ft 9 inch</option>
+								<option value="4.10">4 ft 10 inch</option>
+								<option value="4.11">4 ft 11 inch</option>
+								<option value="5.0">5 ft</option>
+								<option value="5.1">5 ft 1 inch</option>
+								<option value="5.2">5 ft 2 inch</option>
+								<option value="5.3">5 ft 3 inch</option>
+								<option value="5.4">5 ft 4 inch</option>
+								<option value="5.5">5 ft 5 inch</option>
+								<option value="5.6">5 ft 6 inch</option>
+								<option value="5.7">5 ft 7 inch</option>
+								<option value="5.8">5 ft 8 inch</option>
+								<option value="5.9">5 ft 9 inch</option>
+								<option value="5.10">5 ft 10 inch</option>
+								<option value="5.11">5 ft 11 inch</option>
+								<option value="6.0">6 ft</option>
+								<option value="6.1">6 ft 1 inch</option>
+								<option value="6.2">6 ft 2 inch</option>
+								<option value="6.3">6 ft 3 inch</option>
+								<option value="6.4">6 ft 4 inch</option>
+								<option value="6.5">6 ft 5 inch</option>
+								<option value="6.6">6 ft 6 inch</option>
+								<option value="6.7">6 ft 7 inch</option>
+								<option value="6.8">6 ft 8 inch</option>
+								<option value="6.9">6 ft 9 inch</option>
+								<option value="6.10">6 ft 10 inch</option>
+								<option value="6.11">6 ft 11 inch</option>
+								<option value="7.0">7 ft</option>
+								<option value="7.1">Taller Than 7 ft</option>
+						</select>
+						</td>
+				</tr>
+				<tr>
+					<td>
+						
+						<i>
+						<font color="#ffffff">Marital Status: </font>
+						</i>
+						</td>
+						<td>
+						<select size="1" name="optmaritals" id="optmaritals" style="border-radius:5px; height:30px; border: 5px solid black;" onchange="setborder(this)" onclick="setborder(this)" onkeydown="setborder(this)">
+							<option value="0">Select Marital Status</option>
+							<option value="Single">Single</option>
+							<option value="Seperated">Seperated</option>
+							<option value="Divorced">Divorced</option>
+							<option value="Awaiting Divorce">Awaiting Divorce</option>
+							<option value="Widowed">Widowed</option>
+							<option value="Annulled">Annulled</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<i><font color="#ffffff">Children You Have:</font></i></td>
+					<td>
+					<input type="number" name="children" id="children" size="26" min="0" max="100" style="float: left; border-radius:5px; height:30px; border: 5px solid black;" onkeydown="setborder(this)" onclick="setborder(this)"></td>
+				</tr>
+				<tr>
+					<td>
+						
+						<i>
+						<font color="#ffffff">Religion: </font>
+						</i>
+						</td>
+						<td>
+						<select size="1" name="optreligions" id="optreligions" style="border-radius:5px; height:30px; border: 5px solid black;" onchange="setborder(this)" onclick="setborder(this)" onkeydown="setborder(this)">
+							<option value="Select Religion">Select Religion</option>
+							<option value="African Traditional and Diasporic">African Traditional and Diasporic</option>
+							<option value="Agnostic">Agnostic</option>
+							<option value="Atheist">Atheist</option>
+							<option value="Baha'i">Bahai</option>
+							<option value="Buddhism">Buddhism</option>
+							<option value="Cao Dai">Cao Dai</option>
+							<option value="Chinese traditional religion">Chinese traditional religion</option>
+							<option value="Christianity">Christianity</option>
+							<option value="Hinduism">Hinduism</option>
+							<option value="Islam">Islam</option>
+							<option value="Jainism">Jainism</option>
+							<option value="Juche">Juche</option>
+							<option value="Judaism">Judaism</option>
+							<option value="Neo Paganism">Neo Paganism</option>
+							<option value="Nonreligious">Nonreligious</option>
+							<option value="Rastafarianism">Rastafarianism</option>
+							<option value="Secular">Secular</option>
+							<option value="Shinto">Shinto</option>
+							<option value="Sikhism">Sikhism</option>
+							<option value="Spiritism">Spiritism</option>
+							<option value="Tenrikyo">Tenrikyo</option>
+							<option value="Unitarian Universalism">Unitarian Universalism</option>
+							<option value="Zoroastrianism">Zoroastrianism</option>
+							<option value="primal indigenous">primal indigenous</option>
+							<option value="Other">Other</option>
+						  </select>	
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						
+						<i>
+						<font color="#ffffff">Country: </font>
+						</i>
+						</td>
+						<td>
+						<select size="1" name="optcountries" id="optcountries" style="border-radius:5px; height:30px; width:180px; border: 5px solid black;" onchange="setborder(this)" onclick="setborder(this)" onkeydown="setborder(this)">
+							<option value="0">Select Country</option>
+							<option value="Afganistan">Afghanistan</option>
+							<option value="Albania">Albania</option>
+							<option value="Algeria">Algeria</option>
+							<option value="American Samoa">American Samoa</option>
+							<option value="Andorra">Andorra</option>
+							<option value="Angola">Angola</option>
+							<option value="Anguilla">Anguilla</option>
+							<option value="Antigua & Barbuda">Antigua & Barbuda</option>
+							<option value="Argentina">Argentina</option>
+							<option value="Armenia">Armenia</option>
+							<option value="Aruba">Aruba</option>
+							<option value="Australia">Australia</option>
+							<option value="Austria">Austria</option>
+							<option value="Azerbaijan">Azerbaijan</option>
+							<option value="Bahamas">Bahamas</option>
+							<option value="Bahrain">Bahrain</option>
+							<option value="Bangladesh">Bangladesh</option>
+							<option value="Barbados">Barbados</option>
+							<option value="Belarus">Belarus</option>
+							<option value="Belgium">Belgium</option>
+							<option value="Belize">Belize</option>
+							<option value="Benin">Benin</option>
+							<option value="Bermuda">Bermuda</option>
+							<option value="Bhutan">Bhutan</option>
+							<option value="Bolivia">Bolivia</option>
+							<option value="Bonaire">Bonaire</option>
+							<option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
+							<option value="Botswana">Botswana</option>
+							<option value="Brazil">Brazil</option>
+							<option value="British Indian Ocean Ter">British Indian Ocean Ter</option>
+							<option value="Brunei">Brunei</option>
+							<option value="Bulgaria">Bulgaria</option>
+							<option value="Burkina Faso">Burkina Faso</option>
+							<option value="Burundi">Burundi</option>
+							<option value="Cambodia">Cambodia</option>
+							<option value="Cameroon">Cameroon</option>
+							<option value="Canada">Canada</option>
+							<option value="Canary Islands">Canary Islands</option>
+							<option value="Cape Verde">Cape Verde</option>
+							<option value="Cayman Islands">Cayman Islands</option>
+							<option value="Central African Republic">Central African Republic</option>
+							<option value="Chad">Chad</option>
+							<option value="Channel Islands">Channel Islands</option>
+							<option value="Chile">Chile</option>
+							<option value="China">China</option>
+							<option value="Christmas Island">Christmas Island</option>
+							<option value="Cocos Island">Cocos Island</option>
+							<option value="Colombia">Colombia</option>
+							<option value="Comoros">Comoros</option>
+							<option value="Congo">Congo</option>
+							<option value="Cook Islands">Cook Islands</option>
+							<option value="Costa Rica">Costa Rica</option>
+							<option value="Cote DIvoire">Cote DIvoire</option>
+							<option value="Croatia">Croatia</option>
+							<option value="Cuba">Cuba</option>
+							<option value="Curaco">Curacao</option>
+							<option value="Cyprus">Cyprus</option>
+							<option value="Czech Republic">Czech Republic</option>
+							<option value="Denmark">Denmark</option>
+							<option value="Djibouti">Djibouti</option>
+							<option value="Dominica">Dominica</option>
+							<option value="Dominican Republic">Dominican Republic</option>
+							<option value="East Timor">East Timor</option>
+							<option value="Ecuador">Ecuador</option>
+							<option value="Egypt">Egypt</option>
+							<option value="El Salvador">El Salvador</option>
+							<option value="Equatorial Guinea">Equatorial Guinea</option>
+							<option value="Eritrea">Eritrea</option>
+							<option value="Estonia">Estonia</option>
+							<option value="Ethiopia">Ethiopia</option>
+							<option value="Falkland Islands">Falkland Islands</option>
+							<option value="Faroe Islands">Faroe Islands</option>
+							<option value="Fiji">Fiji</option>
+							<option value="Finland">Finland</option>
+							<option value="France">France</option>
+							<option value="French Guiana">French Guiana</option>
+							<option value="French Polynesia">French Polynesia</option>
+							<option value="French Southern Ter">French Southern Ter</option>
+							<option value="Gabon">Gabon</option>
+							<option value="Gambia">Gambia</option>
+							<option value="Georgia">Georgia</option>
+							<option value="Germany">Germany</option>
+							<option value="Ghana">Ghana</option>
+							<option value="Gibraltar">Gibraltar</option>
+							<option value="Great Britain">Great Britain</option>
+							<option value="Greece">Greece</option>
+							<option value="Greenland">Greenland</option>
+							<option value="Grenada">Grenada</option>
+							<option value="Guadeloupe">Guadeloupe</option>
+							<option value="Guam">Guam</option>
+							<option value="Guatemala">Guatemala</option>
+							<option value="Guinea">Guinea</option>
+							<option value="Guyana">Guyana</option>
+							<option value="Haiti">Haiti</option>
+							<option value="Hawaii">Hawaii</option>
+							<option value="Honduras">Honduras</option>
+							<option value="Hong Kong">Hong Kong</option>
+							<option value="Hungary">Hungary</option>
+							<option value="Iceland">Iceland</option>
+							<option value="Indonesia">Indonesia</option>
+							<option value="India">India</option>
+							<option value="Iran">Iran</option>
+							<option value="Iraq">Iraq</option>
+							<option value="Ireland">Ireland</option>
+							<option value="Isle of Man">Isle of Man</option>
+							<option value="Israel">Israel</option>
+							<option value="Italy">Italy</option>
+							<option value="Jamaica">Jamaica</option>
+							<option value="Japan">Japan</option>
+							<option value="Jordan">Jordan</option>
+							<option value="Kazakhstan">Kazakhstan</option>
+							<option value="Kenya">Kenya</option>
+							<option value="Kiribati">Kiribati</option>
+							<option value="Korea North">Korea North</option>
+							<option value="Korea Sout">Korea South</option>
+							<option value="Kuwait">Kuwait</option>
+							<option value="Kyrgyzstan">Kyrgyzstan</option>
+							<option value="Laos">Laos</option>
+							<option value="Latvia">Latvia</option>
+							<option value="Lebanon">Lebanon</option>
+							<option value="Lesotho">Lesotho</option>
+							<option value="Liberia">Liberia</option>
+							<option value="Libya">Libya</option>
+							<option value="Liechtenstein">Liechtenstein</option>
+							<option value="Lithuania">Lithuania</option>
+							<option value="Luxembourg">Luxembourg</option>
+							<option value="Macau">Macau</option>
+							<option value="Macedonia">Macedonia</option>
+							<option value="Madagascar">Madagascar</option>
+							<option value="Malaysia">Malaysia</option>
+							<option value="Malawi">Malawi</option>
+							<option value="Maldives">Maldives</option>
+							<option value="Mali">Mali</option>
+							<option value="Malta">Malta</option>
+							<option value="Marshall Islands">Marshall Islands</option>
+							<option value="Martinique">Martinique</option>
+							<option value="Mauritania">Mauritania</option>
+							<option value="Mauritius">Mauritius</option>
+							<option value="Mayotte">Mayotte</option>
+							<option value="Mexico">Mexico</option>
+							<option value="Midway Islands">Midway Islands</option>
+							<option value="Moldova">Moldova</option>
+							<option value="Monaco">Monaco</option>
+							<option value="Mongolia">Mongolia</option>
+							<option value="Montserrat">Montserrat</option>
+							<option value="Morocco">Morocco</option>
+							<option value="Mozambique">Mozambique</option>
+							<option value="Myanmar">Myanmar</option>
+							<option value="Nambia">Nambia</option>
+							<option value="Nauru">Nauru</option>
+							<option value="Nepal">Nepal</option>
+							<option value="Netherland Antilles">Netherland Antilles</option>
+							<option value="Netherlands">Netherlands (Holland, Europe)</option>
+							<option value="Nevis">Nevis</option>
+							<option value="New Caledonia">New Caledonia</option>
+							<option value="New Zealand">New Zealand</option>
+							<option value="Nicaragua">Nicaragua</option>
+							<option value="Niger">Niger</option>
+							<option value="Nigeria">Nigeria</option>
+							<option value="Niue">Niue</option>
+							<option value="Norfolk Island">Norfolk Island</option>
+							<option value="Norway">Norway</option>
+							<option value="Oman">Oman</option>
+							<option value="Pakistan">Pakistan</option>
+							<option value="Palau Island">Palau Island</option>
+							<option value="Palestine">Palestine</option>
+							<option value="Panama">Panama</option>
+							<option value="Papua New Guinea">Papua New Guinea</option>
+							<option value="Paraguay">Paraguay</option>
+							<option value="Peru">Peru</option>
+							<option value="Phillipines">Philippines</option>
+							<option value="Pitcairn Island">Pitcairn Island</option>
+							<option value="Poland">Poland</option>
+							<option value="Portugal">Portugal</option>
+							<option value="Puerto Rico">Puerto Rico</option>
+							<option value="Qatar">Qatar</option>
+							<option value="Republic of Montenegro">Republic of Montenegro</option>
+							<option value="Republic of Serbia">Republic of Serbia</option>
+							<option value="Reunion">Reunion</option>
+							<option value="Romania">Romania</option>
+							<option value="Russia">Russia</option>
+							<option value="Rwanda">Rwanda</option>
+							<option value="St Barthelemy">St Barthelemy</option>
+							<option value="St Eustatius">St Eustatius</option>
+							<option value="St Helena">St Helena</option>
+							<option value="St Kitts-Nevis">St Kitts-Nevis</option>
+							<option value="St Lucia">St Lucia</option>
+							<option value="St Maarten">St Maarten</option>
+							<option value="St Pierre & Miquelon">St Pierre & Miquelon</option>
+							<option value="St Vincent & Grenadines">St Vincent & Grenadines</option>
+							<option value="Saipan">Saipan</option>
+							<option value="Samoa">Samoa</option>
+							<option value="Samoa American">Samoa American</option>
+							<option value="San Marino">San Marino</option>
+							<option value="Sao Tome & Principe">Sao Tome & Principe</option>
+							<option value="Saudi Arabia">Saudi Arabia</option>
+							<option value="Senegal">Senegal</option>
+							<option value="Seychelles">Seychelles</option>
+							<option value="Sierra Leone">Sierra Leone</option>
+							<option value="Singapore">Singapore</option>
+							<option value="Slovakia">Slovakia</option>
+							<option value="Slovenia">Slovenia</option>
+							<option value="Solomon Islands">Solomon Islands</option>
+							<option value="Somalia">Somalia</option>
+							<option value="South Africa">South Africa</option>
+							<option value="South Sudan">South Sudan</option>
+							<option value="Spain">Spain</option>
+							<option value="Sri Lanka">Sri Lanka</option>
+							<option value="Sudan">Sudan</option>
+							<option value="Suriname">Suriname</option>
+							<option value="Swaziland">Swaziland</option>
+							<option value="Sweden">Sweden</option>
+							<option value="Switzerland">Switzerland</option>
+							<option value="Syria">Syria</option>
+							<option value="Tahiti">Tahiti</option>
+							<option value="Taiwan">Taiwan</option>
+							<option value="Tajikistan">Tajikistan</option>
+							<option value="Tanzania">Tanzania</option>
+							<option value="Thailand">Thailand</option>
+							<option value="Togo">Togo</option>
+							<option value="Tokelau">Tokelau</option>
+							<option value="Tonga">Tonga</option>
+							<option value="Trinidad & Tobago">Trinidad & Tobago</option>
+							<option value="Tunisia">Tunisia</option>
+							<option value="Turkey">Turkey</option>
+							<option value="Turkmenistan">Turkmenistan</option>
+							<option value="Turks & Caicos Is">Turks & Caicos Is</option>
+							<option value="Tuvalu">Tuvalu</option>
+							<option value="Uganda">Uganda</option>
+							<option value="United Kingdom">United Kingdom</option>
+							<option value="Ukraine">Ukraine</option>
+							<option value="United Arab Erimates">United Arab Emirates</option>
+							<option value="United States of America">United States of America</option>
+							<option value="Uraguay">Uruguay</option>
+							<option value="Uzbekistan">Uzbekistan</option>
+							<option value="Vanuatu">Vanuatu</option>
+							<option value="Vatican City State">Vatican City State</option>
+							<option value="Venezuela">Venezuela</option>
+							<option value="Vietnam">Vietnam</option>
+							<option value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
+							<option value="Virgin Islands (USA)">Virgin Islands (USA)</option>
+							<option value="Wake Island">Wake Island</option>
+							<option value="Wallis & Futana Is">Wallis & Futana Is</option>
+							<option value="Yemen">Yemen</option>
+							<option value="Zaire">Zaire</option>
+							<option value="Zambia">Zambia</option>
+							<option value="Zimbabwe">Zimbabwe</option>
+						</select></td>
+				</tr>
+				
+				<tr>
+					<td>
+					<i><font color="#ffffff">Your Disability:</font></i></td>
+					<td>
+ 						<textarea style="float: left; border-radius:5px; height:70px; width:250px; border: 5px solid black;" rows = "50" cols = "50" name = "disability" id = "disability" onkeydown="setborder(this)" onclick="setborder(this)"></textarea>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+					<i><font color="#ffffff">About Yourself:</font></i></td>
+					<td>
+ 						<textarea style="float: left; border-radius:5px; height:70px; width:250px; border: 5px solid black;" rows = "50" cols = "50" name = "about" id = "about" onkeydown="setborder(this)" onclick="setborder(this)"></textarea>
+					</td>
+				</tr>
+
+			</table>
+			</div>
+			<input type="hidden" name="txtdate" id="txtdate">
+			<input type="hidden" name="txtcountry" id="txtcountry">
+			<input type="hidden" name="txtreligion" id="txtreligion">
+			<input type="hidden" name="txtgender" id="txtgender">
+			<input type="hidden" name="txtmarital" id="txtmarital">
+			<input type="hidden" name="txtheight" id="txtheight">
+			
+			<input type="submit" value="Submit" name="submit" class="transbutton2"><input type="button" value="Login" name="login" class="transbutton2" onclick="javascript:shw('login.html')"></p>
+					
+		</form>	
+		
+		
+	</center>	
+		
+	<div id="errmsg" class="errmsg1"></div>	
+
+	
+</div>
+
+<script>
+
+	addDaysoptions();
+	addMonthoptions();
+	addYearsoptions();
+	
+	
+	function shw(page){
+		window.location.href=page;
+	}
+	
+	function addDaysoptions(){
+		var sel = document.getElementById("optdays");
+		var option = document.createElement("option");
+		option.text = "Date";
+		option.value = "0";
+		sel.add(option);
+		for(i=1; i<=9; i++){
+			var option = document.createElement("option");
+			option.text = "0" + i;
+			option.value = "0" + i;
+			sel.add(option);
+		}
+		for(i=10; i<=31; i++){
+			var option = document.createElement("option");
+			option.text = i;
+			option.value = i;
+			sel.add(option);
+		}
+
+	}
+	
+	function addMonthoptions(){
+		var sel = document.getElementById("optmonths");
+		var months =["Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		for(i=0; i<13; i++){
+			var option = document.createElement("option");
+			option.text = months[i];
+			if(i<=9){
+				option.value = "0" + i;
+			}
+			else {
+				option.value = i;
+			}
+			sel.add(option);
+		}
+	}
+	
+	function addYearsoptions(){
+		var sel = document.getElementById("optyears");
+		var yr = new Date().getFullYear();
+		var option = document.createElement("option");
+		option.text = "Year";
+		option.value = "0";
+		sel.add(option);
+		for(i=1930; i<=yr; i++){
+			var option = document.createElement("option");
+			option.text = i;
+			option.value = i;
+			sel.add(option);
+		}
+
+	}
+	
+	function chk(gender){
+		if(gender == 'male'){
+			document.getElementById('male').checked = true;
+			document.getElementById('female').checked = false;
+			document.getElementById('txtgender').value="male";
+		}
+		else {
+			document.getElementById('male').checked = false;
+			document.getElementById('female').checked = true;
+			document.getElementById('txtgender').value="female";
+		}
+	}
+
+	function validatefrm(){
+		var err;
+		var msg;
+		var errs;
+
+		msg ='<br><font size="5" color="red">Error ! </font><font size="4" color="white">Please, check the fields in red ! </font><br><input type="button" value="OK" name="ok" class="transbutton2" onclick="javascript:hideerr()"></center>';
+		err = false;
+		errs="";
+
+		if(document.getElementById('email').value==""){
+			err = true;
+			document.getElementById('email').style.borderColor = "red";
+			errs = errs + "Missing Email !" + "<br>";
+		}
+		if(checkEmail()==false){
+			err = true;
+			document.getElementById('email').style.borderColor = "red";
+			errs = errs + "Invalid Email Entered !" + "<br>";
+		}
+		if(document.getElementById('password').value==""){
+			err = true;
+			document.getElementById('password').style.borderColor = "red";
+			errs = errs + "Missing Password !" + "<br>";
+		}
+		if(document.getElementById('password2').value==""){
+			err = true;
+			document.getElementById('password2').style.borderColor = "red";
+			errs = errs + "Missing Password Again !" + "<br>";
+		}
+		if(document.getElementById('password').value.length < 6){
+			err = true;
+			document.getElementById('password').style.borderColor = "red";
+			errs = errs + "Password Must Be Atleast 6 Letters Long !" + "<br>";
+		}
+		if(document.getElementById('password').value != document.getElementById('password2').value){
+			err = true;
+			document.getElementById('password').style.borderColor = "red";
+			document.getElementById('password2').style.borderColor = "red";
+			errs = errs + "Passwords Doesn't Match !" + "<br>";
+		}
+		if(document.getElementById('fname').value==""){
+			err = true;
+			document.getElementById('fname').style.borderColor = "red";
+			errs = errs + "Missing First Name !" + "<br>";
+		}
+		if(document.getElementById('lname').value==""){
+			err = true;
+			document.getElementById('lname').style.borderColor = "red";
+			errs = errs + "Missing Last name !" + "<br>";
+		}
+		if(document.getElementById('disability').value==""){
+			err = true;
+			document.getElementById('disability').style.borderColor = "red";
+			errs = errs + "Missing Your Disability !" + "<br>";
+		}
+		if(document.getElementById('about').value==""){
+			err = true;
+			document.getElementById('about').style.borderColor = "red";
+			errs = errs + "Missing About Yourself !" + "<br>";
+		}
+		if(document.getElementById('optdays').options[document.getElementById('optdays').selectedIndex].value=="0"){
+			err = true;
+			document.getElementById('optdays').style.borderColor = "red";
+			errs = errs + "Please, Select Birthday Date !" + "<br>";
+		}
+		if(document.getElementById('optmonths').options[document.getElementById('optmonths').selectedIndex].value=="00"){
+			err = true;
+			document.getElementById('optmonths').style.borderColor = "red";
+			errs = errs + "Please, Select Birthday Month !" + "<br>";
+		}
+		if(document.getElementById('optyears').options[document.getElementById('optyears').selectedIndex].value=="0"){
+			err = true;
+			document.getElementById('optyears').style.borderColor = "red";
+			errs = errs + "Please, Select Birthday Year !" + "<br>";
+		}
+		if(document.getElementById("optreligions").options[document.getElementById("optreligions").selectedIndex].value=="Select Religion"){
+			err = true;
+			document.getElementById('optreligions').style.borderColor = "red";
+			errs = errs + "Please, Select A Religion !" + "<br>";
+		}
+		if(document.getElementById("optcountries").options[document.getElementById("optcountries").selectedIndex].value=="0"){
+			err = true;
+			document.getElementById('optcountries').style.borderColor = "red";
+			errs = errs + "Please, Select A Country !" + "<br>";
+		}
+		if(document.getElementById("optheights").options[document.getElementById("optheights").selectedIndex].value=="0"){
+			err = true;
+			document.getElementById('optheights').style.borderColor = "red";
+			errs = errs + "Please, Select A Height !" + "<br>";
+		}
+		if(document.getElementById("optmaritals").options[document.getElementById("optmaritals").selectedIndex].value=="0"){
+			err = true;
+			document.getElementById('optmaritals').style.borderColor = "red";
+			errs = errs + "Please, Select A Marital Status !" + "<br>";
+		}
+		if(document.getElementById('children').value==""){
+			err = true;
+			document.getElementById('children').style.borderColor = "red";
+			errs = errs + "Missing Number of Children You Have !" + "<br>";
+		}
+		if(document.getElementById('male').checked == false && document.getElementById('female').checked == false){
+			err = true;
+			document.getElementById('male').style.outline = "5px solid red";
+			document.getElementById('female').style.outline = "5px solid red";
+			errs = errs + "Please, Select A Gender !" + "<br>";
+		}
+
+		if(err == true){
+			document.getElementById('errmsg').innerHTML = "<center>" + errs + msg;
+			document.getElementById('errmsg').style.display="block";
+			centerDiv("errmsg");
+			return false;	
+		}
+		if(err == false){
+
+			document.getElementById('txtdate').value=document.getElementById("optyears").options[document.getElementById("optyears").selectedIndex].text + "-" + document.getElementById("optmonths").options[document.getElementById("optmonths").selectedIndex].value + "-" + document.getElementById("optdays").options[document.getElementById("optdays").selectedIndex].text;
+			document.getElementById('txtreligion').value=document.getElementById("optreligions").options[document.getElementById("optreligions").selectedIndex].text;
+			document.getElementById('txtcountry').value=document.getElementById("optcountries").options[document.getElementById("optcountries").selectedIndex].text;
+			document.getElementById('txtmarital').value=document.getElementById("optmaritals").options[document.getElementById("optmaritals").selectedIndex].text;
+			document.getElementById('txtheight').value=document.getElementById("optheights").options[document.getElementById("optheights").selectedIndex].value;
+			
+			if(document.getElementById('male').checked == true){
+				document.getElementById('txtgender').value="male";
+			}
+			else {
+				document.getElementById('txtgender').value="female";
+			}
+			return true;
+
+		}
+	}
+
+	function checkEmail() {
+
+		var email = document.getElementById('email');
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+		if (!filter.test(email.value)) {
+			return false;
+		}
+	}
+
+	function setborder(obj){
+		obj.style.borderColor = "black";
+	}
+
+	function setborder2(){
+		document.getElementById('male').style.outline = "5px solid black";
+		document.getElementById('female').style.outline = "5px solid black";
+	}
+
+	function hideerr(){
+		document.getElementById('errmsg').style.display="none";
+	}
+
+	<!--
+// var elementSize = getElementSize('testDiv');
+// var elementWidth = elementSize.width;
+// var elementHeight = elementSize.height;
+function getElementSize(elementRef)
+{
+ if ( typeof elementRef == 'string' )
+  elementRef = document.getElementById(elementRef);
+
+ var widthValue = 0;
+ var heightValue = 0;
+
+ if ( elementRef.offsetWidth )
+  widthValue = elementRef.offsetWidth;
+ else if ( (document.layers) && (elementRef.document) && (elementRef.document.width) )
+  widthValue = elementRef.document.width;
+ else if ( (elementRef.clip) && (elementRef.clip.width) )
+  widthValue = elementRef.clip.width;
+ else if ( (elementRef.style) && (elementRef.style.width) )
+  widthValue = elementRef.style.width;
+ else if ( (elementRef.style) && (elementRef.style.pixelWidth) )
+  widthValue = elementRef.style.pixelWidth;
+
+ widthValue = parseInt(widthValue);
+ if ( (isNaN(widthValue) == true) || (widthValue < 0) )
+  widthValue = 0;
+
+ if ( elementRef.offsetHeight )
+  heightValue = elementRef.offsetHeight;
+ else if ( (document.layers) && (elementRef.document) && (elementRef.document.height) )
+  heightValue = elementRef.document.height;
+ else if ( (elementRef.clip) && (elementRef.clip.height) )
+  heightValue = elementRef.clip.height;
+ else if ( (elementRef.style) && (elementRef.style.height) )
+  heightValue = elementRef.style.height;
+ else if ( (elementRef.style) && (elementRef.style.pixelHeight) )
+  heightValue = elementRef.style.pixelHeight;
+
+ heightValue = parseInt(heightValue);
+ if ( (isNaN(heightValue) == true) || (heightValue < 0) )
+  heightValue = 0;
+
+ return { width:widthValue, height:heightValue }
+}
+
+// var screenSize = getViewportSize();
+// var screenWidth = screenSize.width;
+// var screenHeight = screenSize.height;
+function getViewportSize()
+{
+ var heightValue = 0;
+ widthValue = 0;
+
+ if ( window.innerHeight )
+ {
+  heightValue = window.innerHeight;
+  widthValue = window.innerWidth;
+ }
+ else if ( (document.documentElement) && (document.documentElement.clientHeight) )
+ {
+  heightValue = document.documentElement.clientHeight;
+  widthValue = document.documentElement.clientWidth;
+ }
+ else if ( (document.body) && (document.body.clientHeight) )
+ {
+  heightValue = document.body.clientHeight;
+  widthValue = document.body.clientWidth;
+ }
+
+ return { width: parseInt(widthValue, 10), height: parseInt(heightValue, 10) };
+}
+
+// centerDiv('testDiv');
+function centerDiv(divRef)
+{
+ if ( typeof divRef == 'string' )
+  divRef = document.getElementById(divRef);
+
+ // Get the screen dimensions...
+ var screenSize = getViewportSize();
+ var screenWidth = screenSize.width;
+ var screenHeight = screenSize.height;
+
+ // Get the element dimensions...
+ var elementSize = getElementSize(divRef);
+ var elementWidth = elementSize.width;
+ var elementHeight = elementSize.height;
+
+ // Calculate the centering positions...
+ var xPos = (screenWidth - elementWidth) / 2;
+ var yPos = (screenHeight - elementHeight) / 2;
+
+ // Position the element...
+ divRef.style.position = 'absolute';
+ divRef.style.left = xPos + 'px';
+ divRef.style.top = yPos + document.body.scrollTop + 'px';
+}
+// -->
+
+</script>
+
+</body>
+
+</html>
